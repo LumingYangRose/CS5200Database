@@ -10,7 +10,8 @@ function myDB() {
     const db = getDb();
 
     const PAGE_SIZE = 10;
-    const query = `select * from home_price
+    const query = `SELECT *
+      FROM Home
       LIMIT ${PAGE_SIZE} OFFSET ${PAGE_SIZE * (page - 1)};`;
 
     const allPromise = util.promisify(db.all.bind(db));
@@ -35,8 +36,8 @@ VALUES($homeType, $bedrooms, $bathrooms, $interiorArea, $lot);`;
 
   myDB.updateHome = function (home) {
     const db = getDb();
-    
-    const query_home = `
+
+    const query = `
     UPDATE Home
     SET
       homeType = $homeType,
@@ -47,39 +48,15 @@ VALUES($homeType, $bedrooms, $bathrooms, $interiorArea, $lot);`;
     WHERE
       homeID = $homeID;`;
 
-    const query_price = `
-    UPDATE Price
-    SET
-      marketPrice = $marketPrice
-    WHERE
-      homeID = $homeID;`;
-
-    //UPDATE Price 
-    // homeType = $homeType
-    //   bathrooms = $bathrooms,
-    //   interiorArea = $interiorArea
-    //       lot = $lot
-    // SET
-    // marketPrice = $marketPrice
-    // WHERE
-    //   homeID = $homeID;
-    ;
-
     const runPromise = util.promisify(db.run.bind(db));
-    runPromise(query_home, {
+
+    return runPromise(query, {
       $homeID: +home.$homeID,
       $homeType: home.$homeType,
       $bedrooms: +home.$bedrooms,
       $bathrooms: +home.$bathrooms,
       $interiorArea: +home.$interiorArea,
       $lot: +home.$lot,
-    })
-      .then(() => db);
-
-    console.log(home.$marketPrice);
-    return runPromise(query_price, {
-      $homeID: +home.$homeID,
-      $marketPrice: +home.$marketPrice,
     })
       .then(() => db)
       .finally(() => db.close());

@@ -16,7 +16,7 @@ block content
       div
         each h in homes
           form.p-2(action="/homes/delete" method="POST")
-            input.flex-shrink-1.m-1(style="min-width:20px" type="hidden" name="$homeID" value=h.homeID)
+            input.flex-shrink-1.m-1(style="min-width:20px" type="hidden" name="$homeId" value=h.homeId)
 
             label.form-group homeType:
               input.form-control.m-1(style="min-width:20px" type="text" name="$homeType" value=h.homeType)
@@ -28,8 +28,6 @@ block content
               input.form-control.m-1(style="min-width:20px" type="number" name="$interiorArea" value=h.interiorArea)
             label.form-group lot:
               input.form-control.m-1(style="min-width:20px" type="number" name="$lot" value=h.lot)
-            label.form-group price:
-              input.form-control.m-1(style="min-width:20px" type="number" name="$marketPrice" value=h.marketPrice)
             .form-group
               button.m-1.btn.btn-danger(type="submit" formaction="/homes/delete") X
               button.m-1.btn.btn-secondary(type="submit" formaction="/homes/update") Update

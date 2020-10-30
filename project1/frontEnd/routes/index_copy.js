@@ -63,7 +63,6 @@ router.post("/homes/update", async (req, res) => {
   } catch (err) {
     console.log("got error update");
     req.session.err = err.message;
-    console.log(err.message);
     res.redirect("/homes");
   }
 });
