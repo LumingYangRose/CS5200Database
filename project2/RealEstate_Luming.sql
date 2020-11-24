@@ -1,0 +1,81 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "Home" (
+	"homeID"	INTEGER NOT NULL UNIQUE,
+	"homeType"	TEXT NOT NULL,
+	"bedrooms"	INTEGER NOT NULL,
+	"baths"	INTEGER NOT NULL,
+	"interiorArea"	INTEGER NOT NULL,
+	"lot"	INTEGER NOT NULL,
+	"parking"	INTEGER,
+	"heating"	TEXT,
+	"cooling"	TEXT,
+	"view"	TEXT,
+	PRIMARY KEY("homeID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Location" (
+	"locationID"	INTEGER NOT NULL UNIQUE,
+	"homeID"	INTEGER NOT NULL,
+	"address"	TEXT NOT NULL,
+	"city"	TEXT NOT NULL,
+	"state"	TEXT NOT NULL,
+	"postalCode"	TEXT NOT NULL,
+	FOREIGN KEY("homeID") REFERENCES "Home"("homeID"),
+	PRIMARY KEY("locationID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Home_Owner" (
+	"homeID"	INTEGER NOT NULL,
+	"ownID"	INTEGER NOT NULL,
+	FOREIGN KEY("homeID") REFERENCES "Home"("homeID"),
+	PRIMARY KEY("homeID","ownID")
+);
+CREATE TABLE IF NOT EXISTS "Owner" (
+	"ownerID"	INTEGER NOT NULL UNIQUE,
+	"firstName"	TEXT NOT NULL,
+	"lastName"	TEXT NOT NULL,
+	"phone"	TEXT NOT NULL,
+	"email"	TEXT NOT NULL,
+	"address"	TEXT,
+	PRIMARY KEY("ownerID")
+);
+CREATE TABLE IF NOT EXISTS "Buyer" (
+	"buyerID"	INTEGER NOT NULL UNIQUE,
+	"firstName"	TEXT NOT NULL,
+	"lastName"	TEXT NOT NULL,
+	"phone"	TEXT NOT NULL,
+	"email"	TEXT NOT NULL,
+	"address"	TEXT,
+	PRIMARY KEY("buyerID")
+);
+CREATE TABLE IF NOT EXISTS "Home_Buyer" (
+	"homeID"	INTEGER NOT NULL,
+	"buyerID"	INTEGER NOT NULL,
+	FOREIGN KEY("buyerID") REFERENCES "Buyer"("buyerID"),
+	FOREIGN KEY("homeID") REFERENCES "Home"("homeID"),
+	PRIMARY KEY("homeID","buyerID")
+);
+CREATE TABLE IF NOT EXISTS "Agent" (
+	"agentID"	INTEGER NOT NULL UNIQUE,
+	"firstName"	TEXT NOT NULL,
+	"lastName"	TEXT NOT NULL,
+	"phone"	TEXT NOT NULL,
+	"email"	TEXT NOT NULL,
+	"address"	TEXT NOT NULL,
+	PRIMARY KEY("agentID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Price" (
+	"priceID"	INTEGER NOT NULL UNIQUE,
+	"homeID"	INTEGER NOT NULL,
+	"marketPrice"	NUMERIC,
+	"bidPrice"	NUMERIC,
+	"lastPrice"	NUMERIC,
+	PRIMARY KEY("priceID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "PropertyStatus" (
+	"statusID"	INTEGER NOT NULL,
+	"homeID"	INTEGER NOT NULL,
+	"status"	TEXT NOT NULL,
+	"statusSetDate"	TEXT NOT NULL,
+	FOREIGN KEY("homeID") REFERENCES "Home"("homeID"),
+	PRIMARY KEY("statusID")
+);
+COMMIT;
