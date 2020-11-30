@@ -1,0 +1,18 @@
+/* 1. filter all the houses that has the "electric" heating type and group the matching houses by the "homeType" and sums up the "interiorArea".
+*/
+db.orders.aggregate([   {$match: {heating: "electric"}},   {$group: {_id: "_id", total: { $sum: "marketPrice"}}} ])
+
+/* 2. Look for houses that are either belong to "apartments" or "townhouses" and has the marketprice less than 10,000 dollars.
+*/
+db.inventory.find( {$and: [{ $or: [{homeType: "apartments"}, {homeType: "townhouses"}]}, {"price.marketPrice": {$lt : 100000}}]} )
+
+/* 3. Count homes that have the view of water and have more than five bedrooms.
+*/
+db.orders.aggregate([   {$match: {view: "water", bedrooms: {$gt: 4}}},   {$count: "homeID"}])
+
+/* 4. update homes that have less than 1000 lot area to a string lable "less than 1000".
+*/
+db.orders.aggregate([   {$match: {"lot" : {$lt : 1000}}},   {$set: {lot: "less than 1000"}}])
+
+/* 5. sort homes that have the cooling system as "central cooling system" in ascending order.
+db.orders.aggregate([   {$match: {cooling: "central cooling system"}},   {$sort: {"price.marketPrice": 1}}])

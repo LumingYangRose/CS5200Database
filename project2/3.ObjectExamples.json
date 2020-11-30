@@ -1,0 +1,91 @@
+[
+    {
+        "homeID" : 8,
+        "homeType" : "lots/land",
+        "bedrooms" : 4,
+        "bathrooms" : 2,
+        "interior area" : 3475,
+        "lot" : 2280,
+        "parking" : 4,
+
+        "Owner" : {
+            "ownerID" : 1,
+            "firstName" : "Osbourn",
+            "lastName" : "Stoner",
+            "phone" : "130-787-0038",
+            "email" : "ostoner0@canalblog.com",
+            "address" : "5801 Pearson Court"
+        },
+
+        "Buyer" : {
+            "buyerID" : 2,
+            "firstName" : "Jasun",
+            "lastName" : "Ellard",
+            "phone" : "926-507-0264",
+            "email" : "jellard1@icq.com",
+            "address" : "58651 Anzinger Lane"
+        }
+    },
+
+    {
+        "homeID" : 9,
+        "homeType" : "lots/land",
+        "bedrooms" : 3,
+        "bathrooms" : 5,
+        "interior area" : 4131,
+        "lot" : 2701,
+        "parking" : 3,
+
+        "Owner" : {
+            "ownerID" : 2,
+            "firstName" : "Shelton",
+            "lastName" : "Baxstair",
+            "phone" : "473-386-8885",
+            "email" : "sbaxstair1@list-manage.com",
+            "address" : "2827 Sachtjen Point"
+        },
+
+        "Agent" : {
+            "agentID" : 1,
+            "firstName" : "Isa",
+            "lastName" : "Warn",
+            "phone" : "853-718-2222",
+            "email" : "iwarn0@amazon.co.jp",
+            "address" : "71818 North Parkway"
+        }
+    },
+
+    {
+        "homeID" : 10,
+        "homeType" : "townhouses",
+        "bedrooms" : 3,
+        "bathrooms" : 2.5,
+        "interior area" : 671,
+        "lot" : 2677,
+        "parking" : 2,
+
+        "Owner" : {
+            "ownerID" : 3,
+            "firstName" : "Marcello",
+            "lastName" : "Kibble",
+            "phone" : "170-847-2258",
+            "email" : "mkibble2@ucsd.edu",
+            "address" : "12289 Havey Street"
+        },
+
+        "Price" : {
+            "priceID" : 1,
+            "homeID" : 64,
+            "marketPrice" : 426638,
+            "bidPrice" : 457841,
+            "lastPrice" : 523449
+        },
+
+        "PropertyStatus" : {
+            "statusID" : 1,
+            "homeID" : 10,
+            "status" : "contingent",
+            "statusSetDate" : "9/2/2020"
+        }
+    }
+]
