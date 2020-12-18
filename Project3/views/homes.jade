@@ -1,0 +1,99 @@
+extends layout
+
+block content
+  h1 Homes
+
+
+  if err
+    div.alert.alert-danger= err
+
+  if msg
+    div.alert.alert-success= msg
+
+  .row
+    .col-8
+      h2 Current Homes
+      div
+        each h in homes
+          form.p-2(action="/homes/delete" method="POST")
+            input.flex-shrink-1.m-1(style="min-width:20px" type="hidden" name="id" value=h.id) 
+
+            label.form-group price:
+              input.form-control.m-1(style="min-width:20px" type="number" name="price" value=h.price)
+
+            label.form-group homeType:
+              input.form-control.m-1(style="min-width:20px" type="text" name="homeType" value=h.homeType)
+            label.form-group bedrooms:
+              input.form-control.m-1(style="min-width:20px" type="number" name="bedrooms" value=h.bedrooms)
+            label.form-group bathrooms:
+              input.form-control.m-1(style="min-width:20px" type="number" name="bathrooms" value=h.bathrooms)
+            .form-group
+              button.m-1.btn.btn-danger(type="submit" formaction="/homes/delete") X
+              button.m-1.btn.btn-secondary(type="submit" formaction="/homes/update") Update
+            hr
+
+      nav(aria-label="Page navigation example")
+        ul(class="pagination")
+          li(class="page-item")
+            a(class="page-link" href="/homes?page=1") 1
+
+          li(class="page-item")
+            a(class="page-link" href="/homes?page=2") 2
+          li(class="page-item")
+            a(class="page-link" href="/homes?page=3") 3
+
+    .col-4
+      h2 Create New Homes
+
+      form(action="/homes/create", method="post")
+        .form-group
+          label price
+            input.form-control(type="number", name="price")
+
+        .form-group
+          label homeType
+            input.form-control(type="text", name="homeType")
+
+        .form-group
+          label bedrooms
+            input.form-control(type="number", name="bedrooms")
+
+        .form-group
+          label bathrooms
+            input.form-control(type="number", name="bathrooms")
+
+
+        button.btn.btn-primary(type="submit") Create New Home
+
+    //- .col-4
+    //-   h2 Search Neighborhood
+
+    //-   form(action="/homes/search", method="post")
+    //-     .form-group
+    //-       label enter zipCode
+    //-         input.form-control(type="number", name="zipCode")
+
+
+    //-     button.btn.btn-primary(type="submit") Search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//- then end
