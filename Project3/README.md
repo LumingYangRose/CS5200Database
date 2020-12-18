@@ -1,17 +1,19 @@
-# nodeExpressMongoJade
+# nodeExpressRedisJade
 
-A basic example showcasing an Mongo Database with server side rendering
+A basic example showcasing an Redis Database with server side rendering
 
 ## Installation
 
 Clone the repository, then
 
 ```
-cd nodeExpressMongoJade
+activate redis server: $ redis-server
+
+go to the folder contains app.js
 
 npm install
 npm run start
 ```
 
-And your app should be running on http://localhost:3000 . It assumes that you have `mongod` running on `mongodb://localhost:27017` or that you have the MONGO_URL environment variable set to the database you want to use
+And your app should be running on http://localhost:3000 . 
 # nodeExpressRedisJade
